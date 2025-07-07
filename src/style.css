@@ -42,7 +42,7 @@
   --size-900: 5rem;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 47em) {
   :root {
     --fs-primary-heading: var(--fs-900);
     --fs-secondry-heading: var(--fs-800);
@@ -79,7 +79,8 @@ html:focus-within {
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
 /* Set core body defaults */
@@ -226,13 +227,18 @@ p[data-width="wide"] {
 }
 
 @media(max-width:50em) {
+  .primary-header[data-overlay] {
+    position: relative;
+    z-index: 999;
+  }
+
   .primary-navigation {
     display: none;
     position: fixed;
-    padding: var(--size-400);
+    padding: var(--size-700);
     inset: 7rem var(--size-400);
     max-width: 25rem;
-    margin-left: auto;
+    margin-inline: auto;
     background: var(--clr-neutral-100);
     border-radius: var(--size-100);
     box-shadow: 0 0 0.75em rgb(0, 0, 0, 0.05);
@@ -266,10 +272,16 @@ p[data-width="wide"] {
     background: transparent;
     border: 0;
     padding: 0.5em;
+    width: 1.65rem;
+    aspect-ratio: 1;
+    background-image: url('/images/icon-hamburger.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
-  .mobile-nav-toggle .icon-close {
-    display: none;
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url('/images/icon-close.svg');
   }
 }
 
@@ -568,6 +580,69 @@ input :where([type="email"], [type="text"]) {
   background: var(--clr-accent-400);
 }
 
+/* hero images */
+
+
+/*  */
+/* position: relative; */
+/* order: -1;
+} */
+@media(max-width: 47em) {
+  .hero_image {
+    order: -1;
+  }
+
+}
+
+.hero_image::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: 0;
+  width: 87%;
+  max-height: 70vh;
+  max-height: 70dvh;
+  aspect-ratio: 1/1.2;
+  background-image: url('/images/bg-tablet-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+
+@media(min-width: 47em) {
+  .hero_image::before {
+    width: 45%;
+  }
+
+}
+
+
+/* sales points */
+
+.sales-points_blog {
+  position: relative;
+}
+
+.sales-points_blog::before {
+  content: url('/images/bg-tablet-pattern.svg');
+  zoom: 25%;
+  position: absolute;
+  z-index: -1;
+  left: 70%;
+  bottom: 120%;
+  width: 100px;
+  aspect-ratio: 1/1.2;
+}
+
+@media(min-width: 47em) {
+  .sales-points_blog::before {
+    zoom: 70%;
+    z-index: -1;
+    left: -500px;
+    top: 42%;
+    width: 100px;
+  }
+}
 
 /* utility classes */
 
@@ -599,7 +674,7 @@ input :where([type="email"], [type="text"]) {
   gap: 1rem;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 47em) {
   .even-columns {
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
@@ -614,7 +689,7 @@ input :where([type="email"], [type="text"]) {
   justify-self: end;
 }
 
-@media(min-width: 50em) {
+@media(min-width: 47em) {
   .justify-self-end-md {
     justify-self: end;
   }
@@ -632,7 +707,7 @@ input :where([type="email"], [type="text"]) {
   margin-inline: auto;
 }
 
-@media(max-width: 50em) {
+@media(max-width: 47em) {
   .text-center-sm-only {
     text-align: center;
   }
@@ -733,11 +808,15 @@ input :where([type="email"], [type="text"]) {
   margin-block: var(--size-700);
 }
 
+.mx-auto {
+  margin-inline: auto;
+}
+
 .display-sm-none {
   display: none;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 47em) {
   .display-md-inline-flex {
     display: inline-flex;
   }
